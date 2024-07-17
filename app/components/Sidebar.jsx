@@ -1,44 +1,73 @@
 'use client';
 
-import { ChevronFirst, MoreVertical } from 'lucide-react';
+import {
+  ArrowLeftToLine,
+  ArrowRightToLine,
+  Bug,
+  CalendarCheck2,
+  NotebookPen,
+  StickyNote,
+} from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Sidebar({ children }) {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const handleSidebar = () => {
+    setIsCollapsed(!isCollapsed);
+  };
   return (
-    <aside className='h-screen'>
-      <nav className='h-full w-60 flex flex-col bg-white border-r shadow-lg'>
-        <div className='p-4 pb-2 flex justify-between items-center'>
-          <Image
+    <aside
+      className={`${
+        isCollapsed ? 'w-20' : 'w-80'
+      } h-screen flex flex-col justify-between transition-all border-r`}
+    >
+      <nav className='h-full flex flex-col bg-white'>
+        <header className='p-4 pb-2 flex justify-between items-center border-b'>
+          {}
+          {/* <Image
             src='https://img.logoipsum.com/224.svg'
             alt='logo'
             width={40}
             height={40}
-          />
-          <h1 className='font-bold'>Build it</h1>
-          <button className='p-2 rounded-lg bg-gray-50 hover:bg-gray-100'>
-            <ChevronFirst />
-          </button>
-        </div>
-        <ul classname='flex-1 px-3 bg-slate-500'>{children}</ul>
-        <div className='border-t  flex p-3'>
-          {/* <Image
-            src='https://randomuser.me/api/portraits/women/3.jpg'
-            alt='avatar'
-            width={45}
-            height={45}
-            className='rounded-full'
           /> */}
-          <div
-            classname={`w-52 flex flex-col justify-between items-center ml-3`}
-          >
-            <div classname='leading-4'>
-              <h2 className='font-semibold'>Jane Doe</h2>
-              <span className='text-xs text-gray-600'>janedoe@email.com</span>
-            </div>
 
-            <MoreVertical size={20} />
-          </div>
-        </div>
+          <h1
+            className={`${
+              isCollapsed ? 'hidden' : ''
+            } font-bold font-ibm text-md`}
+          >
+            &lt;bits&bobs/&gt;
+          </h1>
+          <button
+            onClick={handleSidebar}
+            className='p-4 rounded-lg bg-slate-100 hover:bg-slate-200'
+          >
+            {isCollapsed ? <ArrowRightToLine /> : <ArrowLeftToLine />}
+          </button>
+          {/* <h1 className='font-bold font-fira'>Bob's Lab</h1> */}
+        </header>
+
+        <ul className='flex-1 space-y-2 p-4 '>
+          <li className='bg-slate-100  px-3 py-4 rounded-md flex gap-2  hover:bg-sky-100'>
+            <StickyNote />
+            <Link href='/'>Item 1 </Link>
+          </li>
+          <li className='bg-slate-100  px-3 py-4 rounded-md flex gap-2  hover:bg-sky-100'>
+            <CalendarCheck2 />
+            <Link href='/'>Item 1 </Link>
+          </li>
+          <li className='bg-slate-100  px-3 py-4 rounded-md flex gap-2  hover:bg-sky-100'>
+            <NotebookPen />
+            <Link href='/'>Item 1 </Link>
+          </li>
+          <li className='bg-slate-100  px-3 py-4 rounded-md flex gap-2  hover:bg-sky-100'>
+            <Bug />
+            <Link href='/'>Item 1 </Link>
+          </li>
+        </ul>
       </nav>
     </aside>
   );

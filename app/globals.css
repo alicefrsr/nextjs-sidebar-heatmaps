@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* :root {
+ --dark-grey: #343a40;
+  --light-grey: #f4f4f6;
+  --cartoon-blue: #483bdb; */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 16px;
+}
